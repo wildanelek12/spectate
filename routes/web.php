@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[WebController::class,'index']);
+Route::get('/payment',[WebController::class,'createPayment']);
+Route::get('/',[WebController::class,'index']);     

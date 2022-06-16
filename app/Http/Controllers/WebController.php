@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
-    public function index(Request $request)
+    public function index()
+    {
+       return view('index');
+    }
+    public function createPayment(Request $request)
     {
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = 'SB-Mid-server-6aZbVF9mU-sFjp9Umo0PFsDC';
@@ -20,13 +24,26 @@ class WebController extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
-                'gross_amount' => 200000000,
+                'gross_amount' => 100000,
+            ),
+            'item_details' => array(
+                [
+                'id' => 'a2',
+                'price' => 7000,
+                'quantity' => 4,
+                'name' => "tiket 1"
+                ],
+                [
+                    'id' => 'a2',
+                    'price' => 8000,
+                    'quantity' => 4,
+                    'name' => "tiket 2"
+                    ]
             ),
             'customer_details' => array(
-                'first_name' => 'budi',
-                'last_name' => 'pratama',
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
+                'first_name' =>$request->fullname,
+                'email' => $request->email,
+                'phone' => $request->no
             ),
         );
         
