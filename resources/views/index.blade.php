@@ -1,564 +1,1117 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/apple-icon.png')}}">
-  <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
-  <title>
-    Spectate
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <!-- Nucleo Icons -->
-  <link href="{{asset('css/nucleo-icons.css')}}" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link href="{{asset('css/blk-design-system.css?v=1.0.0')}}" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{asset('demo/demo.css')}}" rel="stylesheet" />
+
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--====== Title ======-->
+    <title>Eventify - Event and Conference Template</title>
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!--====== Flaticon css ======-->
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+
+    <!--====== Line Icons css ======-->
+    <link rel="stylesheet" href="assets/css/LineIcons.css">
+
+    <!--====== Animate css ======-->
+    <link rel="stylesheet" href="assets/css/animate.css">
+
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="assets/css/slick.css">
+
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="assets/css/default.css">
+
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
 </head>
 
-<body class="landing-page">
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
-    <div class="container">
-      <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/blk-design-system/index.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
-          <span>SPECTATE</span> 2022
-        </a>
-        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse justify-content-end" id="navigation">
-        <div class="navbar-collapse-header">
-          <div class="row">
-            <div class="col-6 collapse-brand">
-              <a>
-                BLK•
-              </a>
+<body>
+
+    <!--====== PRELOADER PART START ======-->
+
+    <div class="preloader">
+        <div class="loader">
+            <div class="ytp-spinner">
+                <div class="ytp-spinner-container">
+                    <div class="ytp-spinner-rotator">
+                        <div class="ytp-spinner-left">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                        <div class="ytp-spinner-right">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-6 collapse-close text-right">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="tim-icons icon-simple-remove"></i>
-              </button>
-            </div>
-          </div>
         </div>
-        <ul class="navbar-nav">
-          <li class="nav-item p-0">
-            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
-              <i class="fab fa-twitter"></i>
-              <p class="d-lg-none d-xl-none">Twitter</p>
-            </a>
-          </li>
-          <li class="nav-item p-0">
-            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
-              <i class="fab fa-facebook-square"></i>
-              <p class="d-lg-none d-xl-none">Facebook</p>
-            </a>
-          </li>
-          <li class="nav-item p-0">
-            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
-              <i class="fab fa-instagram"></i>
-              <p class="d-lg-none d-xl-none">Instagram</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../index.html">Back to Kit</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/creativetimofficial/blk-design-system/issues">Have an issue?</a>
-          </li>
-        </ul>
-      </div>
     </div>
-  </nav>
-  <!-- End Navbar -->
-  <div class="wrapper">
-    <div class="page-header">
-      <img src="{{asset('img/blob.png')}}" class="path">
-      <img src="{{asset('img/path2.png')}}" class="path2">
-      <img src="{{asset('img/triunghiuri.png')}}" class="shapes triangle">
-      <img src="{{asset('img/waves.png')}}" class="shapes wave">
-      <img src="{{asset('img/patrat.png')}}" class="shapes squares">
-      <img src="{{asset('img/cercuri.png')}}" class="shapes circle">
-      <div class="content-center">
-        <div class="row row-grid justify-content-between align-items-center text-left">
-          <div class="col-lg-6 col-md-6">
-            <h1 class="text-white">We keep your coin
-              <br/>
-              <span class="text-white">secured</span>
-            </h1>
-            <p class="text-white mb-3">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel...</p>
-            <div class="btn-wrapper mb-3">
-            <button class="btn btn-warning">Beli Tiket</button>
-            </div>
-            <div class="btn-wrapper">
-              <div class="button-container">
-                <button href="javascript:void(0)" class="btn btn-icon btn-simple btn-round btn-neutral">
-                  <i class="fab fa-twitter"></i>
-                </button>
-                <button href="javascript:void(0)" class="btn btn-icon btn-simple btn-round btn-neutral">
-                  <i class="fab fa-dribbble"></i>
-                </button>
-                <button href="javascript:void(0)" class="btn btn-icon btn-simple btn-round btn-neutral">
-                  <i class="fab fa-facebook"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-5">
-            <img src="{{asset('img/etherum.png')}}" alt="Circle image" class="img-fluid">
-          </div>
+
+    <!--====== PRELOADER PART ENDS ======-->
+
+    <!--====== HEADER PART START ======-->
+
+    <header class="header-area">
+        <div class="navbar-area navbar-two">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="assets/images/logo.png" alt="Logo">
+                            </a>
+
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTwo" aria-controls="navbarTwo" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarTwo">
+                                <ul class="navbar-nav m-auto">
+                                    <li class="nav-item active">
+                                        <a class="page-scroll" href="#home">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#event">Schedules</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#team">Speakers</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#gallery">Gallery</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#pricing">Pricing</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#contact">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="navbar-btn d-none d-sm-inline-block">
+                                <a class="main-btn" href="#">Get a Ticket</a>
+                            </div>
+                        </nav> <!-- navbar -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
         </div>
-      </div>
-    </div>
-    <section class="section section-lg">
-      <section class="section">
-        <img src="{{asset('img/path4.png')}}" class="path">
+
+        <div id="home" class="header-content-area bg_cover d-flex align-items-center" style="background-image: url(assets/images/header-bg.jpg)">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div data-countdown="2022/10/01"></div>
+                        
+                        <div class="header-content text-center">
+                            <h2 class="header-title">1 <sup>St</sup> Spectate</h2>
+                            <h3 class="sub-title">Spectacular Techno Exhibition</h3>
+
+                            <ul class="header-btn">
+                               
+                                <li><button class="main-btn" data-toggle="modal" data-target="#exampleModal">Buy Ticket Now</a></li>
+                            </ul>
+                        </div>  <!-- header content -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- header content -->
+    </header>
+ 
+
+    <!--====== HEADER PART ENDS ======-->
+
+    <!--====== ABOUT PART START ======-->
+
+    <section id="about" class="about-area pb-130 pt-80">
         <div class="container">
-          <div class="row row-grid justify-content-between">
-            <div class="col-md-5 mt-lg-5">
-              <div class="row">
-                <div class="col-lg-6 col-sm-12 px-2 py-2">
-                  <div class="card card-stats ">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-5 col-md-4">
-                          <div class="icon-big text-center icon-warning">
-                            <i class="tim-icons icon-trophy text-warning"></i>
-                          </div>
-                        </div>
-                        <div class="col-7 col-md-8">
-                          <div class="numbers">
-                            <p class="card-title">3,237
-                              <p>
-                                <p class="card-category">Awards</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-image mt-50 wow fadeInLeft" data-wow-duration="1s">
+                        <img src="assets/images/about.png" alt="About">
+                    </div> <!-- about image -->
                 </div>
-                <div class="col-lg-6 col-sm-12 px-2 py-2">
-                  <div class="card card-stats upper bg-default">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-5 col-md-4">
-                          <div class="icon-big text-center icon-warning">
-                            <i class="tim-icons icon-coins text-white"></i>
-                          </div>
-                        </div>
-                        <div class="col-7 col-md-8">
-                          <div class="numbers">
-                            <p class="card-title">3,653
-                              <p>
-                                <p class="card-category">Commits</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="col-lg-6">
+                    <div class="about-content mt-45 wow fadeInRight" data-wow-duration="1s">
+                        <div class="section-title">
+                            <h2 class="title">About Our Meetups</h2>
+                        </div> <!-- section title -->
+
+                        <p class="text mt-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. <br> <br> Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <p class="date"><span>25<sup>th</sup></span> December’ 19</p>
+                    </div> <!-- about content -->
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6 col-sm-12 px-2 py-2">
-                  <div class="card card-stats ">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-5 col-md-4">
-                          <div class="icon-big text-center icon-warning">
-                            <i class="tim-icons icon-gift-2 text-info"></i>
-                          </div>
-                        </div>
-                        <div class="col-7 col-md-8">
-                          <div class="numbers">
-                            <p class="card-title">593
-                              <p>
-                                <p class="card-category">Presents</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-sm-12 px-2 py-2">
-                  <div class="card card-stats ">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-5 col-md-4">
-                          <div class="icon-big text-center icon-warning">
-                            <i class="tim-icons icon-credit-card text-success"></i>
-                          </div>
-                        </div>
-                        <div class="col-7 col-md-8">
-                          <div class="numbers">
-                            <p class="card-title">10,783
-                              <p>
-                                <p class="card-category">Forks</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="pl-md-5">
-                <h1>Large
-                  <br/>Achivements</h1>
-                <p>I should be capable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. </p>
-                <br/>
-                <p>When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray.</p>
-                <br/>path4.png
-                <a href="#" class="font-weight-bold text-info mt-5">Show all <i class="tim-icons icon-minimal-right text-info"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </div> <!-- row -->
+        </div> <!-- container -->
     </section>
-    <section class="section section-lg">
-      <img src="{{asset('img/path4.png')}}" class="path">
-      <img src="{{asset('img/path5.png')}}" class="path2">
-      <img src="{{asset('img/path2.png')}}" class="path3">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-12">
-            <h1 class="text-center">Your best benefit</h1>
-            <div class="row row-grid justify-content-center">
-              <div class="col-lg-3">
-                <div class="info">
-                  <div class="icon icon-primary">
-                    <i class="tim-icons icon-money-coins"></i>
-                  </div>
-                  <h4 class="info-title">Low Commission</h4>
-                  <hr class="line-primary">
-                  <p>Divide details about your work into parts. Write a few lines about each one. A paragraph describing a feature will.</p>
-                </div>
-              </div>
-              <div class="col-lg-3">
-                <div class="info">
-                  <div class="icon icon-warning">
-                    <i class="tim-icons icon-chart-pie-36"></i>
-                  </div>
-                  <h4 class="info-title">High Incomes</h4>
-                  <hr class="line-warning">
-                  <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing feature will be a feature. </p>
-                </div>
-              </div>
-              <div class="col-lg-3">
-                <div class="info">
-                  <div class="icon icon-success">
-                    <i class="tim-icons icon-single-02"></i>
-                  </div>
-                  <h4 class="info-title">Verified People</h4>
-                  <hr class="line-success">
-                  <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing be enough.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section section-lg section-safe">
-      <img src="{{asset('img/path5.png')}}" class="path">
-      <div class="container">
-        <div class="row row-grid justify-content-between">
-          <div class="col-md-5">
-            <img src="{{asset('img/chester-wade.jpg')}}" class="img-fluid floating">
-            <div class="card card-stats bg-danger">
-              <div class="card-body">
-                <div class="justify-content-center">
-                  <div class="numbers">
-                    <p class="card-title">100%</p>
-                    <p class="card-category text-white">Safe</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card card-stats bg-info">
-              <div class="card-body">
-                <div class="justify-content-center">
-                  <div class="numbers">
-                    <p class="card-title">573 K</p>
-                    <p class="card-category text-white">Satisfied customers</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card card-stats bg-default">
-              <div class="card-body">
-                <div class="justify-content-center">
-                  <div class="numbers">
-                    <p class="card-title">10 425</p>
-                    <p class="card-category text-white">Business</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="px-md-5">
-              <hr class="line-success">
-              <h3>Awesome features</h3>
-              <p>The design system comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go.</p>
-              <ul class="list-unstyled mt-5">
-                <li class="py-2">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-success mb-2">
-                      <i class="tim-icons icon-vector"></i>
-                    </div>
-                    <div class="ml-3">
-                      <h6>Carefully crafted components</h6>
-                    </div>
-                  </div>
-                </li>
-                <li class="py-2">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-success mb-2">
-                      <i class="tim-icons icon-tap-02"></i>
-                    </div>
-                    <div class="ml-3">
-                      <h6>Amazing page examples</h6>
-                    </div>
-                  </div>
-                </li>
-                <li class="py-2">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-success mb-2">
-                      <i class="tim-icons icon-single-02"></i>
-                    </div>
-                    <div class="ml-3">
-                      <h6>Super friendly support team</h6>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section section-lg">
-      <img src="{{asset('img/path4.png')}}" class="path">
-      <img src="{{asset('img/path2.png')}}" class="path2">
-      <div class="col-md-12">
-        <div class="card card-chart card-plain">
-          <div class="card-header">
+
+    <!--====== ABOUT PART ENDS ======-->
+
+    <!--====== COUNTER PART START ======-->
+
+    <section id="counter" class="counter-area pt-80 pb-130">
+        <div class="container">
             <div class="row">
-              <div class="col-sm-6 text-left">
-                <hr class="line-primary">
-                <h5 class="card-category">Total Investments</h5>
-                <h2 class="card-title">Performance</h2>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="chart-area">
-              <canvas id="chartBig"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-counter text-center mt-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                        <div class="counter-icon">
+                            <i class="lni-mic"></i>
+                        </div>
+                        <div class="counter-content">
+                            <span class="count counter">45</span>
+                            <p class="text">Expert Speaker</p>
+                        </div>
+                    </div> <!-- single counter -->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-counter text-center mt-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+                        <div class="counter-icon">
+                            <i class="lni-bulb"></i>
+                        </div>
+                        <div class="counter-content">
+                            <span class="count counter">800</span>
+                            <p class="text">Seats Available</p>
+                        </div>
+                    </div> <!-- single counter -->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-counter text-center mt-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.6s">
+                        <div class="counter-icon">
+                            <i class="lni-briefcase"></i>
+                        </div>
+                        <div class="counter-content">
+                            <span class="count counter">29</span>
+                            <p class="text">Sonsors</p>
+                        </div>
+                    </div> <!-- single counter -->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-counter text-center mt-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
+                        <div class="counter-icon">
+                            <i class="lni-coffee-cup"></i>
+                        </div>
+                        <div class="counter-content">
+                            <span class="count counter">56</span>
+                            <p class="text">Sessions</p>
+                        </div>
+                    </div> <!-- single counter -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
     </section>
-    <section class="section section-lg section-coins">
-      <img src="{{asset('img/path3.png')}}" class="path">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <hr class="line-info">
-            <h1>Choose the coin
-              <span class="text-info">that fits your needs</span>
-            </h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card card-coin card-plain">
-              <div class="card-header">
-                <img src="{{asset('img/bitcoin.png')}}" class="img-center img-fluid">
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 text-center">
-                    <h4 class="text-uppercase">Light Coin</h4>
-                    <span>Plan</span>
-                    <hr class="line-primary">
-                  </div>
+
+    <!--====== COUNTER PART ENDS ======-->
+
+    <!--====== EVENT SCHEDULE PART START ======-->
+
+    <section id="event" class="event-schedule pt-115 pb-130">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center">
+                        <h2 class="title">EVENT SCHEDULE</h2>
+                        <p class="text">Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ius illum vocent mediocritatem reiciendis odit sed, vero amet blanditiis cule dicta iriure at phaedrum.</p>
+                    </div> <!-- section title -->
                 </div>
-                <div class="row">
-                  <ul class="list-group">
-                    <li class="list-group-item">50 messages</li>
-                    <li class="list-group-item">100 emails</li>
-                    <li class="list-group-item">24/7 Support</li>
-                  </ul>
+            </div> <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="event-tab mt-60">
+                        <ul class="nav justify-content-between align-items-center" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="active" id="day-1-tab" data-toggle="tab" href="#day-1" role="tab" aria-controls="day-1" aria-selected="true">
+                                    <h4 class="nav-title">Day 1</h4>
+                                    <span>28 July, 2022</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="day-2-tab" data-toggle="tab" href="#day-2" role="tab" aria-controls="day-2" aria-selected="false">
+                                    <h4 class="nav-title">Day 2</h4>
+                                    <span>28 July, 2022</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="day-3-tab" data-toggle="tab" href="#day-3" role="tab" aria-controls="day-3" aria-selected="false">
+                                    <h4 class="nav-title">Day 3</h4>
+                                    <span>28 July, 2022</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="day-4-tab" data-toggle="tab" href="#day-4" role="tab" aria-controls="day-4" aria-selected="false">
+                                    <h4 class="nav-title">Day 4</h4>
+                                    <span>28 July, 2022</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="day-1" role="tabpanel" aria-labelledby="day-1-tab">
+                                <div class="event-content pt-40">
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-1.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">Web Design Principle and Best Practise</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-2.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">15 FREE PRODUCTIVE DESIGN TOOLS</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-3.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">GETTING STARTED WITH SKETCHAPP</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+                                </div> <!-- event content -->
+                            </div>
+                            <div class="tab-pane fade" id="day-2" role="tabpanel" aria-labelledby="day-2-tab">
+                                <div class="event-content pt-40">
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-1.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">Web Design Principle and Best Practise</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-2.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">15 FREE PRODUCTIVE DESIGN TOOLS</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-3.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">GETTING STARTED WITH SKETCHAPP</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+                                </div> <!-- event content -->
+                            </div>
+                            <div class="tab-pane fade" id="day-3" role="tabpanel" aria-labelledby="day-3-tab">
+                                <div class="event-content pt-40">
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-1.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">Web Design Principle and Best Practise</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-2.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">15 FREE PRODUCTIVE DESIGN TOOLS</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-3.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">GETTING STARTED WITH SKETCHAPP</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+                                </div> <!-- event content -->
+                            </div>
+                            <div class="tab-pane fade" id="day-4" role="tabpanel" aria-labelledby="day-4-tab">
+                                <div class="event-content pt-40">
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-1.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">Web Design Principle and Best Practise</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-2.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">15 FREE PRODUCTIVE DESIGN TOOLS</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+
+                                    <div class="single-event d-md-flex mt-30">
+                                        <div class="event-image">
+                                            <img src="assets/images/event-3.jpg" alt="Event">
+                                        </div>
+                                        <div class="event-content media-body">
+                                            <h4 class="event-title">GETTING STARTED WITH SKETCHAPP</h4>
+                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet minima dolores rerum maiores qui at commodi quas, reprehenderit eius consectetur quae magni molestias veniam, provident illum facere iure libero asperiores!</p>
+                                            <ul class="event-meta">
+                                                <li>Start: 12.00 PM</li>
+                                                <li>End: 15.00 PM</li>
+                                                <li>Location: Hall 1 , Building A, Golden Street, Southafrica</li>
+                                            </ul>
+                                        </div>
+                                    </div> <!-- single event -->
+                                </div> <!-- event content -->
+                            </div>
+                        </div>
+                    </div> <!-- event tab -->
                 </div>
-              </div>
-              <div class="card-footer text-center">
-                <button class="btn btn-primary btn-simple">Get plan</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-coin card-plain">
-              <div class="card-header">
-                <img src="{{asset('img/etherum.png')}}" class="img-center img-fluid">
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 text-center">
-                    <h4 class="text-uppercase">Dark Coin</h4>
-                    <span>Plan</span>
-                    <hr class="line-success">
-                  </div>
-                </div>
-                <div class="row">
-                  <ul class="list-group">
-                    <li class="list-group-item">150 messages</li>
-                    <li class="list-group-item">1000 emails</li>
-                    <li class="list-group-item">24/7 Support</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                <button class="btn btn-success btn-simple">Get plan</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-coin card-plain">
-              <div class="card-header">
-                <img src="{{asset('img/ripp.png')}}" class="img-center img-fluid">
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 text-center">
-                    <h4 class="text-uppercase">Bright Coin</h4>
-                    <span>Plan</span>
-                    <hr class="line-info">
-                  </div>
-                </div>
-                <div class="row">
-                  <ul class="list-group">
-                    <li class="list-group-item">350 messages</li>
-                    <li class="list-group-item">10K emails</li>
-                    <li class="list-group-item">24/7 Support</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                <button class="btn btn-info btn-simple">Get plan</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
     </section>
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <h1 class="title">BLK•</h1>
-          </div>
-          <div class="col-md-3">
-            <ul class="nav">
-              <li class="nav-item">
-                <a href="../index.html" class="nav-link">
-                  Home
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../examples/landing-page.html" class="nav-link">
-                  Landing
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../examples/register-page.html" class="nav-link">
-                  Register
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../examples/profile-page.html" class="nav-link">
-                  Profile
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <ul class="nav">
-              <li class="nav-item">
-                <a href="https://creative-tim.com/contact-us" class="nav-link">
-                  Contact Us
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="https://creative-tim.com/about-us" class="nav-link">
-                  About Us
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="https://creative-tim.com/blog" class="nav-link">
-                  Blog
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="https://opensource.org/licenses/MIT" class="nav-link">
-                  License
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3 class="title">Follow us:</h3>
-            <div class="btn-wrapper profile">
-              <a target="_blank" href="https://twitter.com/creativetim" class="btn btn-icon btn-neutral btn-round btn-simple" data-toggle="tooltip" data-original-title="Follow us">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a target="_blank" href="https://www.facebook.com/creativetim" class="btn btn-icon btn-neutral btn-round btn-simple" data-toggle="tooltip" data-original-title="Like us">
-                <i class="fab fa-facebook-square"></i>
-              </a>
-              <a target="_blank" href="https://dribbble.com/creativetim" class="btn btn-icon btn-neutral  btn-round btn-simple" data-toggle="tooltip" data-original-title="Follow us">
-                <i class="fab fa-dribbble"></i>
-              </a>
+
+    <!--====== EVENT SCHEDULE PART ENDS ======-->
+    <section id="footer" class="footer-area bg_cover" style="background-image: url(assets/images/footer.jpg)">
+      <div class="footer-subscribe-area pt-120 pb-130">
+          <div class="container">
+              <div class="row justify-content-center">
+                  <div class="col-lg-8">
+                      <div class="footer-subscribe text-center">
+                          <h4 class="subscribe-title">Cek status booking</h4>
+                          <div class="subscribe-form mt-45">
+                              <form action="#">
+                                  <input type="email" placeholder="Masukkan kode booking">
+                                  <button class="main-btn">Cari</button>
+                              </form>
+                          </div>
+                      </div> <!-- footer subscribe -->
+                  </div>
+              </div> <!-- row -->
+          </div> <!-- container -->
+      </div> <!-- footer subscribe -->
+      
+    
+      
+      <div class="footer-copyright">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="copyright text-center">
+                          <p class="text">Template Designed and Developed by <a href="https://graygrids.com/" rel="nofollow">GrayGrids</a>. All Rights Reserved by Us</p>
+                      </div> <!-- copyright -->
+                  </div>
+              </div> <!-- row -->
+          </div> <!-- container -->
+      </div> <!-- container -->
+  </section>
+    <!--====== FEATURES PART START ======-->
+
+    <section id="features" class="features-area pt-115 pb-130 gray-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center pb-20">
+                        <h2 class="title">Why You Should Join?</h2>
+                        <p class="text">Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ius illum vocent mediocritatem reiciendis odit sed, vero amet blanditiis cule dicta iriure at phaedrum.</p>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="single-features text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                        <div class="features-icon">
+                            <i class="lni-microphone"></i>
+                            <span>01</span>
+                        </div>
+                        <div class="features-content">
+                            <h4 class="features-title"><a href="#">Great Speakers</a></h4>
+                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                    </div> <!-- single features -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="single-features text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="features-icon">
+                            <i class="lni-users"></i>
+                            <span>02</span>
+                        </div>
+                        <div class="features-content">
+                            <h4 class="features-title"><a href="#">New People</a></h4>
+                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                    </div> <!-- single features -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="single-features text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                        <div class="features-icon">
+                            <i class="lni-bullhorn"></i>
+                            <span>03</span>
+                        </div>
+                        <div class="features-content">
+                            <h4 class="features-title"><a href="#">Global Event</a></h4>
+                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                    </div> <!-- single features -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="single-features text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="features-icon">
+                            <i class="lni-heart"></i>
+                            <span>04</span>
+                        </div>
+                        <div class="features-content">
+                            <h4 class="features-title"><a href="#">Get Inspired</a></h4>
+                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                    </div> <!-- single features -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="single-features text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                        <div class="features-icon">
+                            <i class="lni-cup"></i>
+                            <span>05</span>
+                        </div>
+                        <div class="features-content">
+                            <h4 class="features-title"><a href="#">Networking Session</a></h4>
+                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                    </div> <!-- single features -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="single-features text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="1.5s">
+                        <div class="features-icon">
+                            <i class="lni-gallery"></i>
+                            <span>06</span>
+                        </div>
+                        <div class="features-content">
+                            <h4 class="features-title"><a href="#">Meet New Faces</a></h4>
+                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                    </div> <!-- single features -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== FEATURES PART ENDS ======-->
+
+    <!--====== TEAM PART START ======-->
+
+    <section id="team" class="team-area pt-115 pb-130">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center pb-20">
+                        <h2 class="title">Who’s Speaking</h2>
+                        <p class="text">Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ius illum vocent mediocritatem reiciendis odit sed, vero amet blanditiis cule dicta iriure at phaedrum.</p>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                        <div class="team-image">
+                            <img src="assets/images/team-1.jpg" alt="Team">
+                        </div>
+                        <div class="team-content">
+                            <div class="team-social">
+                                <ul class="social">
+                                    <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
+                                    <li><a href="#"><i class="lni-twitter-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-linkedin-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-pinterest"></i></a></li>
+                                </ul>
+                            </div>
+                            <h4 class="team-name"><a href="#">Mark A. Parker</a></h4>
+                            <span class="sub-title">Web Developer</span>
+                        </div>
+                    </div> <!-- single team -->
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="team-image">
+                            <img src="assets/images/team-2.jpg" alt="Team">
+                        </div>
+                        <div class="team-content">
+                            <div class="team-social">
+                                <ul class="social">
+                                    <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
+                                    <li><a href="#"><i class="lni-twitter-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-linkedin-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-pinterest"></i></a></li>
+                                </ul>
+                            </div>
+                            <h4 class="team-name"><a href="#">Jonathan P Deo</a></h4>
+                            <span class="sub-title">UX Speacilist</span>
+                        </div>
+                    </div> <!-- single team -->
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                        <div class="team-image">
+                            <img src="assets/images/team-3.jpg" alt="Team">
+                        </div>
+                        <div class="team-content">
+                            <div class="team-social">
+                                <ul class="social">
+                                    <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
+                                    <li><a href="#"><i class="lni-twitter-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-linkedin-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-pinterest"></i></a></li>
+                                </ul>
+                            </div>
+                            <h4 class="team-name"><a href="#">Adam Smith</a></h4>
+                            <span class="sub-title">UX Speacilist</span>
+                        </div>
+                    </div> <!-- single team -->
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="team-image">
+                            <img src="assets/images/team-4.jpg" alt="Team">
+                        </div>
+                        <div class="team-content">
+                            <div class="team-social">
+                                <ul class="social">
+                                    <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
+                                    <li><a href="#"><i class="lni-twitter-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-linkedin-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-pinterest"></i></a></li>
+                                </ul>
+                            </div>
+                            <h4 class="team-name"><a href="#">Robert Jhonson</a></h4>
+                            <span class="sub-title">UX Speacilist</span>
+                        </div>
+                    </div> <!-- single team -->
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                        <div class="team-image">
+                            <img src="assets/images/team-5.jpg" alt="Team">
+                        </div>
+                        <div class="team-content">
+                            <div class="team-social">
+                                <ul class="social">
+                                    <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
+                                    <li><a href="#"><i class="lni-twitter-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-linkedin-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-pinterest"></i></a></li>
+                                </ul>
+                            </div>
+                            <h4 class="team-name"><a href="#">Jonathan P Deo</a></h4>
+                            <span class="sub-title">UX Speacilist</span>
+                        </div>
+                    </div> <!-- single team -->
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="1.5s">
+                        <div class="team-image">
+                            <img src="assets/images/team-6.jpg" alt="Team">
+                        </div>
+                        <div class="team-content">
+                            <div class="team-social">
+                                <ul class="social">
+                                    <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
+                                    <li><a href="#"><i class="lni-twitter-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-linkedin-original"></i></a></li>
+                                    <li><a href="#"><i class="lni-pinterest"></i></a></li>
+                                </ul>
+                            </div>
+                            <h4 class="team-name"><a href="#">Steve Jk Jobs</a></h4>
+                            <span class="sub-title">UX Speacilist</span>
+                        </div>
+                    </div> <!-- single team -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== TEAM PART ENDS ======-->
+
+    <!--====== GALLERY PART START ======-->
+
+    <section id="gallery" class="event-gallery pt-115 pb-130 gray-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center pb-50">
+                        <h2 class="title">Event Gallery</h2>
+                        <p class="text">Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ius illum vocent mediocritatem reiciendis odit sed, vero amet blanditiis cule dicta iriure at phaedrum.</p>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+        <div class="row no-gutters">
+            <div class="col-lg-6">
+                <div class="single-gallery">
+                    <div class="gallery-image">
+                        <img src="assets/images/gallery-1.jpg" alt="Gallery">
+                    </div>
+                    <div class="gallery-content">
+                        <a class="image-popup" href="assets/images/gallery-1.jpg"><i class="lni-plus"></i></a>
+                    </div>
+                </div> <!-- single gallery -->
             </div>
-          </div>
+            <div class="col-lg-6">
+                <div class="row no-gutters">
+                    <div class="col-sm-6">
+                        <div class="single-gallery">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery-2.jpg" alt="Gallery">
+                            </div>
+                            <div class="gallery-content">
+                                <a class="image-popup" href="assets/images/gallery-2.jpg"><i class="lni-plus"></i></a>
+                            </div>
+                        </div> <!-- single gallery -->
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="single-gallery">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery-3.jpg" alt="Gallery">
+                            </div>
+                            <div class="gallery-content">
+                                <a class="image-popup" href="assets/images/gallery-3.jpg"><i class="lni-plus"></i></a>
+                            </div>
+                        </div> <!-- single gallery -->
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="single-gallery">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery-4.jpg" alt="Gallery">
+                            </div>
+                            <div class="gallery-content">
+                                <a class="image-popup" href="assets/images/gallery-4.jpg"><i class="lni-plus"></i></a>
+                            </div>
+                        </div> <!-- single gallery -->
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="single-gallery">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery-5.jpg" alt="Gallery">
+                            </div>
+                            <div class="gallery-content">
+                                <a class="image-popup" href="assets/images/gallery-5.jpg"><i class="lni-plus"></i></a>
+                            </div>
+                        </div> <!-- single gallery -->
+                    </div>
+                </div> <!-- row -->
+            </div>
+        </div> <!-- row -->
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="gallery-btn pt-60 text-center">
+                        <a class="main-btn main-btn-2" href="#">Browse all</a>
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== GALLERY PART ENDS ======-->
+
+    <!--====== PRICING PART START ======-->
+
+    <section id="pricing" class="pricing-area pt-115 pb-200">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center pb-20">
+                        <h2 class="title">Ticket Pricing</h2>
+                        <p class="text">Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ius illum vocent mediocritatem reiciendis odit sed, vero amet blanditiis cule dicta iriure at phaedrum.</p>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-8 col-sm-9">
+                    <div class="single-pricing text-center mt-30 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0s">
+                        <div class="pricing-name">
+                            <h4 class="pricing-title">BASIC PASS</h4>
+                            <span class="sub-title">Price Excluding 20% VAT</span>
+                        </div>
+                        <div class="pricing-price">
+                            <span>$ 29.00</span>
+                            <p class="text">Per Day</p>
+                        </div>
+                        <div class="pricing-list">
+                            <ul>
+                                <li>Pro  Regular Seating</li>
+                                <li>Best Comfortable Seat</li>
+                                <li>Coffee Break With Snacks</li>
+                                <li>One Workshop For Practise</li>
+                                <li>Course Certificate</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-btn">
+                            <a class="main-btn" href="#">Buy Ticket</a>
+                        </div>
+                    </div> <!-- single pricing -->
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-9">
+                    <div class="single-pricing active text-center mt-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0s">
+                        <div class="pricing-name">
+                            <h4 class="pricing-title">STANDARD PASS</h4>
+                            <span class="sub-title">Price Excluding 20% VAT</span>
+                        </div>
+                        <div class="pricing-price">
+                            <span>$ 39.00</span>
+                            <p class="text">Per Day</p>
+                        </div>
+                        <div class="pricing-list">
+                            <ul>
+                                <li>Pro  Regular Seating</li>
+                                <li>Best Comfortable Seat</li>
+                                <li>Coffee Break With Snacks</li>
+                                <li>One Workshop For Practise</li>
+                                <li>Course Certificate</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-btn">
+                            <a class="main-btn main-btn-2" href="#">Buy Ticket</a>
+                        </div>
+                    </div> <!-- single pricing -->
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-9">
+                    <div class="single-pricing text-center mt-30 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0s">
+                        <div class="pricing-name">
+                            <h4 class="pricing-title">PREMIUM PASS</h4>
+                            <span class="sub-title">Price Excluding 20% VAT</span>
+                        </div>
+                        <div class="pricing-price">
+                            <span>$ 49.00</span>
+                            <p class="text">Per Day</p>
+                        </div>
+                        <div class="pricing-list">
+                            <ul>
+                                <li>Pro  Regular Seating</li>
+                                <li>Best Comfortable Seat</li>
+                                <li>Coffee Break With Snacks</li>
+                                <li>One Workshop For Practise</li>
+                                <li>Course Certificate</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-btn">
+                            <a class="main-btn" href="#">Buy Ticket</a>
+                        </div>
+                    </div> <!-- single pricing -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== PRICING PART ENDS ======-->
+
+    <!--====== CLIENT PART START ======-->
+
+    <div id="client" class="client-area pt-115 pb-130 gray-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center pb-50">
+                        <h2 class="title">Event Sponsors</h2>
+                        <p class="text">Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ius illum vocent mediocritatem reiciendis odit sed, vero amet blanditiis cule dicta iriure at phaedrum.</p>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+            <div class="row client-active">
+                <div class="col-lg-3">
+                    <div class="single-client">
+                        <img src="assets/images/client-1.png" alt="Client">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client">
+                        <img src="assets/images/client-2.png" alt="Client">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client">
+                        <img src="assets/images/client-3.png" alt="Client">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client">
+                        <img src="assets/images/client-4.png" alt="Client">
+                    </div> <!-- single client -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="single-client">
+                        <img src="assets/images/client-5.png" alt="Client">
+                    </div> <!-- single client -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </div>
+
+    <!--====== CLIENT PART ENDS ======-->
+
+    <!--====== CONTACT PART START ======-->
+
+    <section id="contact" class="contact-area pt-80 pb-130">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="contact-info pt-40">
+                        <div class="section-title pb-10">
+                            <h2 class="title">Lets Buy Ticket</h2>
+                        </div> <!-- section title -->
+                        <ul>
+                            
+                            
+                        </ul>
+                    </div> <!-- contact info -->
+                </div>
+                <div class="col-lg-8">
+                    <div class="contact-form pt-20">
+                        <form id="contact-form" action="assets/contact.php" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="single-form">
+                                        <input type="text" name="name" placeholder="Your Name">
+                                        <i class="lni-user"></i>
+                                    </div> <!-- single form -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="single-form">
+                                        <input type="email" name="email" placeholder="Your Email">
+                                        <i class="lni-envelope"></i>
+                                    </div> <!-- single form -->
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="single-form">
+                                        <input type="text" name="number" placeholder="Phone Number">
+                                        <i class="lni-phone-handset"></i>
+                                    </div> <!-- single form -->
+                                </div>
+                                <div class="col-md-12">
+                               
+                                </div>
+                                <p class="form-message"></p>
+                                <div class="col-md-12">
+                                    <div class="single-form">
+                                        <button type="submit" class="main-btn main-btn-2">Send Message</button>
+                                    </div> <!-- single form -->
+                                </div>
+                            </div> <!-- row -->
+                        </form>
+                    </div> <!-- contact form -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== CONTACT PART ENDS ======-->
+
+    <!--====== FOOTER PART START ======-->
+
+   
+
+    <!--====== FOOTER PART ENDS ======-->
+    
+    <!--====== BACK TOP TOP PART START ======-->
+
+    <a href="#" class="back-to-top"><i class="lni-chevron-up"></i></a>
+
+    <!--====== BACK TOP TOP PART ENDS ======--> 
+
+    <!--====== PART START ======-->
+
+<!--
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+-->
+
+    <!--====== PART ENDS ======-->
+
+    <!-- row -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <form id="contact-form" action="assets/contact.php" method="post">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="single-form">
+                          <input type="text" name="name" placeholder="Your Name">
+                          <i class="lni-user"></i>
+                      </div> <!-- single form -->
+                  </div>
+                  <div class="col-md-6">
+                      <div class="single-form">
+                          <input type="email" name="email" placeholder="Your Email">
+                          <i class="lni-envelope"></i>
+                      </div> <!-- single form -->
+                  </div>
+
+                  <div class="col-md-12">
+                      <div class="single-form">
+                          <input type="text" name="number" placeholder="Phone Number">
+                          <i class="lni-phone-handset"></i>
+                      </div> <!-- single form -->
+                  </div>
+                  <div class="col-md-12">
+                    <div class="single-form">
+                      <input type="number" name="total" placeholder="Total Tiket">
+                     
+                  </div> <!-- single form -->
+                  </div>
+                  <p class="form-message"></p>
+                  <div class="col-md-12 text-right">
+                      <div class="single-form">
+                          <button type="submit" class="main-btn main-btn-2">Send Message</button>
+                      </div> <!-- single form -->
+                  </div>
+              </div> <!-- row -->
+          </form>
         </div>
       </div>
-    </footer>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="{{asset('js/core/jquery.min.js')}}" type="text/javascript"></script>
-  <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
-  <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
-  <script src="{{asset('js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="{{asset('js/plugins/bootstrap-switch.js')}}"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="{{asset('js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
-  <!-- Chart JS -->
-  <script src="{{asset('js/plugins/chartjs.min.js')}}"></script>
-  <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-  <script src="{{asset('js/plugins/moment.min.js')}}"></script>
-  <script src="{{asset('js/plugins/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
-  <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{asset('demo/demo.js')}}"></script>
-  <!-- Control Center for Black UI Kit: parallax effects, scripts for the example pages etc -->
-  <script src="{{asset('js/blk-design-system.min.js?v=1.0.0')}}" type="text/javascript"></script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in asset/asset-for-demo/js/demo.js
-      demo.initLandingPageChart();
-    });
-  </script>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!--====== jquery js ======-->
+    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!--====== Bootstrap js ======-->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+
+    <!--====== Counter Up js ======-->
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+
+    <!--====== Slick js ======-->
+    <script src="assets/js/slick.min.js"></script>
+
+    <!--====== Magnific Popup js ======-->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+    <!--====== Scrolling Nav js ======-->
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <script src="assets/js/scrolling-nav.js"></script>
+
+    <!--====== Countdown js ======-->
+    <script src="assets/js/jquery.countdown.min.js"></script>
+
+    <!--====== wow js ======-->
+    <script src="assets/js/wow.min.js"></script>
+
+    <!--====== Ajax Contact js ======-->
+    <script src="assets/js/ajax-contact.js"></script>
+
+    <!--====== Main js ======-->
+    <script src="assets/js/main.js"></script>
+
 </body>
 
 </html>
