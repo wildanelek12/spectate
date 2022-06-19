@@ -15,7 +15,7 @@ class CreateVerificationTicketsTable extends Migration
     {
         Schema::create('verification_tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('buyer_id')->constrained('buyers');
+            $table->foreignId('invoice_id')->constrained('invoices');
             $table->string('token');
             $table->longText('qr_code_path');
             $table->timestamp('scan_at')->nullable();

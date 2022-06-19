@@ -17,8 +17,8 @@ class CreateTicketTypesTable extends Migration
             $table->id();
             $table->foreignId('ticket_id')->constrained('tickets');
             $table->foreignId('type_id')->constrained('types');
-            $table->string('description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

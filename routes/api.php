@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\InvoiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+    'prefix'     => 'v1',
+    'middleware' => 'api.key',
+], function() {
+    Route::resource('invoice', InvoiceController::class)->only(['store', 'show']);
+    Route::post('invoice/create/{invoice}', [InvoiceController::class, 'createInvoice']);
 });
+
+Route::post('v1/invoice/callback', [InvoiceController::class, 'callBackInvoice']);
