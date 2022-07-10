@@ -18,7 +18,11 @@ class CreateInvoicesTable extends Migration
             $table->foreignId('buyer_id')->constrained('buyers');
             $table->string('invoice_number');
             $table->double('amount', 11, 2);
+            $table->double('fee', 11, 2);
             $table->double('admin_fee', 11, 2);
+            $table->double('total', 11, 2);
+            $table->string('payment_method')->nullable();
+            $table->string('account_number')->nullable();
             $table->enum('status', ['UNPAID', 'PENDING', 'PAID', 'DONE']);
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();

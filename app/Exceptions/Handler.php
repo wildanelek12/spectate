@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,8 +35,26 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (HttpException $e) {
+            $statusCode = $e->getStatusCode();
+            
+            switch ($statusCode) {
+                case 404:
+                    $message = 'Not Found!';
+                    break;
+                case 413:
+                    $message = 'Content Too Large!';
+                    break;
+                
+                default:
+                    $message = 'Gateway Timeout!';
+                    break;
+            }
+
+            return response()->json([
+                'success'   => false,
+                'message'   => config('app.env') == 'production' ? $message : $e->getMessage()
+            ], $statusCode);
         });
     }
 }

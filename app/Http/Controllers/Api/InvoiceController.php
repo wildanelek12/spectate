@@ -20,7 +20,7 @@ class InvoiceController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
     }
@@ -48,7 +48,7 @@ class InvoiceController extends BaseController
 
         DB::beginTransaction();
         try {
-            $admin_fee = 10000; // admin fee masih static
+            $admin_fee = 5000; // admin fee masih static
 
             $buyer = Buyer::firstOrCreate([
                 'name'  => $request->name,
@@ -101,40 +101,18 @@ class InvoiceController extends BaseController
         return $this->sendResponse('berhasil menambahkan data', $invoice);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Invoice $invoice
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Invoice $invoice)
+    public function check_invoice(Request $request)
     {
-        $data = $invoice->with(['orders:id,item_id,price_pieces,qty,total', 'orders.item:id,name,description', 'verification_tickets:id,qr_code_path']);
+        $email          = $request->email;
+        $invoice_number = $request->invoice_number;
 
-        return $this->sendResponse('berhasil menampilkan spesifik data', $data);
-    }
+        $data = Invoice::whereHas('buyer', fn ($q) => $q->where('email', $email))->where('invoice_number', $invoice_number)->first();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        if (!$data) {
+            return $this->sendError('invoice tidak ditemukan');
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $this->sendResponse('berhasil menampilkan spesifik data', $data->load(['buyer:id,name,email,phone', 'orders:id,item_id,price_pieces,qty,total', 'orders.item:id,name,description', 'verification_tickets:id,qr_code_path']));
     }
 
     public function createInvoice(Invoice $invoice) {

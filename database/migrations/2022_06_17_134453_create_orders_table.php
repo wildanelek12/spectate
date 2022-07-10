@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('item_id')->constrained('items');
             $table->double('price_pieces', 11, 2);
             $table->integer('qty');
+            $table->double('fee', 11, 2);
             $table->double('total', 11, 2);
             $table->timestamps();
             $table->softDeletes();

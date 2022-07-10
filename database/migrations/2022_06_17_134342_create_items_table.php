@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('name');
             $table->double('price', 11, 2);
+            $table->double('fee', 11, 2);
             $table->integer('stock');
             $table->string('description')->nullable();
             $table->foreignId('ticket_type_id')->constrained('ticket_types');

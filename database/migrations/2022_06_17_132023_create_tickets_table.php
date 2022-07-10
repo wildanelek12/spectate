@@ -16,6 +16,7 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->timestamp('expired_at');
             $table->timestamps();
             $table->softDeletes();
         });

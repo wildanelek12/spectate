@@ -2,63 +2,40 @@
 
 namespace App\Http\Controllers\AdminApi;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\BaseController;
+use App\Models\Buyer;
 use Illuminate\Http\Request;
 
-class BuyerController extends Controller
+class BuyerController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $keyword = $request->keyword;
+        
+        $data = Buyer::query()
+                    ->when($keyword, fn ($q) => $q->where(fn ($q) => $q
+                        ->where('name', 'like', '%' . $keyword . '%')
+                        ->orWhere('phone', 'like', '%' . $keyword . '%')
+                        ->orWhere('email', 'like', '%' . $keyword . '%')
+                    ))
+                    ->simplePaginate();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return $this->sendResponse('berhasil menampilkan seluruh data', $data);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Buyer $buyer
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Buyer $buyer)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $this->sendResponse('berhasil menampilkan spesifik data', $buyer);
     }
 }
