@@ -21,33 +21,46 @@ class WebController extends Controller
         // Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = true;
         
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => 100000,
-            ),
-            'item_details' => array(
-                [
-                'id' => 'a2',
-                'price' => 7000,
-                'quantity' => 4,
-                'name' => "tiket 1"
-                ],
-                [
+        $payment_type = 1;
+        if($payment_type == 1){
+            $params = array(
+                'transaction_details' => array(
+                    'order_id' => rand(),
+                    'gross_amount' => 102000,
+                ),  
+                'enabled_payments' => ['gopay'],
+                'customer_details' => array(
+                    'first_name' =>$request->fullname,
+                    'email' => $request->email,
+                    'phone' => $request->no
+                ),
+            );
+        }else{
+            $params = array(
+                'transaction_details' => array(
+                    'order_id' => rand(),
+                    'gross_amount' => 100000,
+                ),  
+                'enabled_payments' => ['bank_transfer'],
+                'item_details' => array(
+                    [
                     'id' => 'a2',
-                    'price' => 8000,
-                    'quantity' => 4,
-                    'name' => "tiket 2"
-                    ]
-            ),
-            'customer_details' => array(
-                'first_name' =>$request->fullname,
-                'email' => $request->email,
-                'phone' => $request->no
-            ),
-        );
+                    'price' => 10000,
+                    'quantity' => 1,
+                    'name' => "tiket 1"
+                    ],
+                    
+                ),
+                'customer_details' => array(
+                    'first_name' =>$request->fullname,
+                    'email' => $request->email,
+                    'phone' => $request->no
+                ),
+            );
+        }
+    
         
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return view('welcome',['snap_token'=>$snapToken]);
+        return view('payment',['snap_token'=>$snapToken]);
     }
 }
