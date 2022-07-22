@@ -21,6 +21,7 @@ class ItemController extends BaseController
         $keyword    = $request->keyword;
         $status     = $request->status;
         $type       = $request->type;
+        $ticket     = $request->ticket;
         $expired    = $request->expired;
 
         $data = Item::select([
@@ -44,6 +45,7 @@ class ItemController extends BaseController
                     ))
                     ->when(isset($status), fn ($q) => $q->where('status', $status))
                     ->when($type, fn ($q) => $q->whereHas('ticketType.type', fn ($q) => $q->where('id', $type)))
+                    ->when($ticket, fn ($q) => $q->whereHas('ticketType.ticket', fn ($q) => $q->where('id', $ticket)))
                     ->when($expired == true, fn ($q) => $q->whereHas('ticketType.ticket', fn ($q) => $q->where('expired_at', '<', now())))
                     ->when($expired == false, fn ($q) => $q->whereHas('ticketType.ticket', fn ($q) => $q->where('expired_at', '>', now())))
                     ->simplePaginate();
@@ -79,7 +81,11 @@ class ItemController extends BaseController
             $ticketType = TicketType::where(['ticket_id' => $request->ticket_id, 'type_id'   => $request->type_id])->first();
 
             if (!$ticketType) {
-                return $this->sendError('kategori ticket tidak ditemukan');
+                return $this->sendError('kategori ticket tidak ditemukan', \Illuminate\Http\Response::HTTP_NOT_FOUND);
+            }
+
+            if (Item::where('ticket_type_id', $ticketType->id)->exists()) {
+                return $this->sendError('item dengan kategori tiket tersebut sudah ada');
             }
 
             $data = Item::create([

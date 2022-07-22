@@ -21,4 +21,9 @@ class Item extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function scopeIsReady($query)
+    {
+        return $query->where('status', true);
+    }
 }
