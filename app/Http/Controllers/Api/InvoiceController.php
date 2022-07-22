@@ -275,7 +275,7 @@ class InvoiceController extends BaseController
                         'qr_code_path'  => $qr_code_path
                     ]));
 
-                    // mengirim email ke buyer bahwa pembayarannya telah berhasil
+                    // mengirim email ke buyer bahwa pembayarannya telah berhasil dan mengirim qr code
     
                     break;
 

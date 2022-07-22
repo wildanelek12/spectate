@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AdminApi\BuyerController;
 use App\Http\Controllers\AdminApi\ItemController;
+use App\Http\Controllers\AdminApi\QrCodeController;
 use App\Http\Controllers\AdminApi\TicketController;
 use App\Http\Controllers\AdminApi\TicketTypeController;
 use App\Http\Controllers\AdminApi\TransactionController;
 use App\Http\Controllers\AdminApi\TypeController;
+use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,4 +40,10 @@ Route::group([
 
     Route::resource('type', TypeController::class)->except('create', 'edit', 'update');
     Route::post('type/{type}', [TypeController::class, 'update'])->name('type.update');
+
+    Route::resource('payment-method', PaymentMethod::class)->except('create', 'edit', 'update');
+    Route::post('payment-method/{payment_method}', [PaymentMethod::class, 'update'])->name('payment-method.update');
+
+    Route::get('qr-code', [QrCodeController::class, 'index']);
+    Route::post('qr-code/confirmation', [QrCodeController::class, 'confirmation']);
 });
