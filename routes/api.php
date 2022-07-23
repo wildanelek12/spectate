@@ -23,7 +23,8 @@ Route::group([
     Route::resource('invoice', InvoiceController::class)->only(['index', 'store', 'show']);
     Route::get('invoice/check', [InvoiceController::class, 'check_invoice']);
 
-    Route::resource('item', ItemController::class)->only('index', 'show');
+    Route::get('item', [ItemController::class, 'index']);
+    Route::get('item/{item}', [ItemController::class, 'show']);
 });
 
 Route::post('v1/invoice/callback', [InvoiceController::class, 'callBackInvoice']);

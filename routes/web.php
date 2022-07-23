@@ -37,3 +37,6 @@ Route::get('/admin/payment-method', function () {
 Route::get('/admin', function () {
     return view('admin_page.pages.dashboard');
 })->name('dashboard'); 
+Route::get('/pending-payment', function () {
+    return view('mail.pending_transaction');
+})->name('pendingTransaction'); 
