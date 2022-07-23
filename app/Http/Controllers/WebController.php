@@ -26,9 +26,11 @@ class WebController extends Controller
             $params = array(
                 'transaction_details' => array(
                     'order_id' => rand(),
-                    'gross_amount' => 102000,
+                    'gross_amount' => 1000,
                 ),  
-                'enabled_payments' => ['gopay'],
+                'enabled_payments' => [
+                "bri_va", "other_va", "gopay"],
+            
                 'customer_details' => array(
                     'first_name' =>$request->fullname,
                     'email' => $request->email,
@@ -61,6 +63,6 @@ class WebController extends Controller
     
         
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return view('payment',['snap_token'=>$snapToken]);
+        return view('welcome',['snap_token'=>$snapToken]);
     }
 }

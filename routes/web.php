@@ -40,3 +40,6 @@ Route::get('/admin', function () {
 Route::get('/pending-payment', function () {
     return view('mail.pending_transaction');
 })->name('pendingTransaction'); 
+Route::get('/succes-payment', function () {
+    return view('mail.succes_transaction');
+})->name('succesTransaction'); 

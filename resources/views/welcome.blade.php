@@ -16,8 +16,9 @@
         // For example trigger on button clicked, or any time you need
         var payButton = document.getElementById('pay-button');
         payButton.addEventListener('click', function () {
+          console.log('41c6acdd-8d38-4e7c-929b-7c36ae8ebeec');
           // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-          window.snap.pay('{{$snap_token}}');
+          window.snap.pay('84ffcd0d-5e20-4e6c-aea1-5d5b88c68dc3');
           // customer will be redirected after completing payment pop-up
         });
       </script>
