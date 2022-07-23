@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\AdminApi;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\BaseController;
 use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class PaymentMethodController extends Controller
+class PaymentMethodController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -99,7 +99,7 @@ class PaymentMethodController extends Controller
     public function update(Request $request, PaymentMethod $paymentMethod)
     {
         $validator = Validator::make($request->all(), [
-            'channel_code'      => 'required|alpha_dash|min:3|max:50|unique:ref_payment_methods,channel_code,' . $paymentMethod->id,
+            'channel_code'      => 'required|alpha_dash|min:3|max:50|unique:payment_methods,channel_code,' . $paymentMethod->id,
             'name'              => 'required|string',
             'rate'              => 'required|in:nominal,percentage',
             'fee'               => 'required|numeric',

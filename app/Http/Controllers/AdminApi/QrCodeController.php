@@ -18,7 +18,7 @@ class QrCodeController extends BaseController
 
         $invoice        = Invoice::where('invoice_number', $invoice_number)->first();
 
-        if ($invoice) {
+        if (!$invoice) {
             return $this->sendError('invoice tidak ditemukan');
         }
         
@@ -41,7 +41,10 @@ class QrCodeController extends BaseController
                 'ticket'    => $order->item->ticketType->ticket->name,
                 'type'      => $order->item->ticketType->type->name,
             ]),
-            'scan_at'           => $invoice->verificationTicket->scan_at
+            'verification_ticket' => [
+                'id'        =>$invoice->verificationTicket->id,
+                'scan_at'   => $invoice->verificationTicket->scan_at
+            ]
         ];
 
         return $this->sendResponse('berhasil menampilkan data', $data);

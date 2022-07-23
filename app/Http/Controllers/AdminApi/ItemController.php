@@ -46,8 +46,8 @@ class ItemController extends BaseController
                     ->when(isset($status), fn ($q) => $q->where('status', $status))
                     ->when($type, fn ($q) => $q->whereHas('ticketType.type', fn ($q) => $q->where('id', $type)))
                     ->when($ticket, fn ($q) => $q->whereHas('ticketType.ticket', fn ($q) => $q->where('id', $ticket)))
-                    ->when($expired == true, fn ($q) => $q->whereHas('ticketType.ticket', fn ($q) => $q->where('expired_at', '<', now())))
-                    ->when($expired == false, fn ($q) => $q->whereHas('ticketType.ticket', fn ($q) => $q->where('expired_at', '>', now())))
+                    ->when(isset($expired) && $expired == true, fn ($q) => $q->whereHas('ticketType.ticket', fn ($q) => $q->where('expired_at', '<', now())))
+                    ->when(isset($expired) && $expired == false, fn ($q) => $q->whereHas('ticketType.ticket', fn ($q) => $q->where('expired_at', '>', now())))
                     ->simplePaginate();
 
         return $this->sendResponse('berhasil menampilkan seluruh data', $data);

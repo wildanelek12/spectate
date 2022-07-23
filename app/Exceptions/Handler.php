@@ -35,26 +35,26 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        // $this->renderable(function (HttpException $e) {
-        //     $statusCode = $e->getStatusCode();
+        $this->renderable(function (HttpException $e) {
+            $statusCode = $e->getStatusCode();
             
-        //     switch ($statusCode) {
-        //         case 404:
-        //             $message = 'Not Found!';
-        //             break;
-        //         case 413:
-        //             $message = 'Content Too Large!';
-        //             break;
+            switch ($statusCode) {
+                case 404:
+                    $message = 'Not Found!';
+                    break;
+                case 413:
+                    $message = 'Content Too Large!';
+                    break;
                 
-        //         default:
-        //             $message = 'Gateway Timeout!';
-        //             break;
-        //     }
+                default:
+                    $message = 'Gateway Timeout!';
+                    break;
+            }
 
-        //     return response()->json([
-        //         'success'   => false,
-        //         'message'   => config('app.env') == 'production' ? $message : $e->getMessage()
-        //     ], $statusCode);
-        // });
+            return response()->json([
+                'success'   => false,
+                'message'   => config('app.env') == 'production' ? $message : $e->getMessage()
+            ], $statusCode);
+        });
     }
 }

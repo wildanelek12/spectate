@@ -20,11 +20,12 @@ Route::group([
     'prefix'     => 'v1',
     'middleware' => 'api.key',
 ], function() {
-    Route::resource('invoice', InvoiceController::class)->only(['index', 'store', 'show']);
-    Route::get('invoice/check', [InvoiceController::class, 'check_invoice']);
+    Route::post('invoice-detail', [InvoiceController::class, 'index']);
+    Route::post('invoice-create', [InvoiceController::class, 'store']);
+    Route::get('invoice-check', [InvoiceController::class, 'check_invoice']);
 
     Route::get('item', [ItemController::class, 'index']);
     Route::get('item/{item}', [ItemController::class, 'show']);
 });
 
-Route::post('v1/invoice/callback', [InvoiceController::class, 'callBackInvoice']);
+Route::post('v1/invoice-callback', [InvoiceController::class, 'callBackInvoice']);

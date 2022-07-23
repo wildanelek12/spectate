@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class ItemController extends Controller
+class ItemController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -23,10 +23,9 @@ class ItemController extends Controller
         $data = Item::select([
                         'items.id',
                         'items.name',
-                        'items.price',
+                        DB::raw('(items.price + items.fee) as price'),
                         'items.stock',
                         'items.description',
-                        'items.status',
                         'tickets.name as ticket_name',
                         'tickets.expired_at as ticket_expired_at',
                         'types.name as type_name'
@@ -56,6 +55,14 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return $this->sendResponse('berhasil menampilkan spesifik data', $item->load(['ticketType:id,ticket_id,type_id', 'ticketType.ticket:id,name,expired_at', 'ticketType.type:id,name']));
+        $data = $item->load([
+            'ticketType:id,ticket_id,type_id',
+            'ticketType.ticket:id,name,expired_at',
+            'ticketType.type:id,name'
+        ]);
+
+        $data['price'] = $data['price'] + $data['fee'];
+
+        return $this->sendResponse('berhasil menampilkan spesifik data', $data->makeHidden(['fee', 'status']));
     }
 }

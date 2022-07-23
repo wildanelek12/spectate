@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Jobs\SendEmailJob;
+use App\Mail\BuyerPaidPaymentMail;
+use App\Mail\BuyerPendingPaymentMail;
+use App\Mail\BuyerUnPaidPaymentMail;
 use Illuminate\Http\Request;
 use App\Models\Buyer;
 use App\Models\Invoice;
@@ -70,13 +74,14 @@ class InvoiceController extends BaseController
                 array_push($item_details, [
                     'id'        => $id,
                     'name'      => $item->name,
-                    'price'     => $item->price * $item->fee,
+                    'price'     => $item->price + $item->fee,
                     'qty'       => $qty,
                     'ticket'    => $item->ticketType->ticket->name,
-                    'type'      => $item->ticketType->type->name
+                    'type'      => $item->ticketType->type->name,
+                    'total'     => ($item->price + $item->fee) * $qty
                 ]);
 
-                $amount += $item->price * $qty;
+                $amount += ($item->price + $item->fee) * $qty;
             }
 
             $data = [
@@ -146,7 +151,7 @@ class InvoiceController extends BaseController
                     return $this->sendError('item dengan id ' . $id . ' tidak ditemukan', \Illuminate\Http\Response::HTTP_NOT_FOUND);
                 }
                 
-                $fee    += $item->fee;
+                $fee    += $item->fee * $qty;
                 $amount += $item->price * $qty;
             }
             
@@ -157,7 +162,7 @@ class InvoiceController extends BaseController
                 'buyer_id'          => $buyer->id,
                 'invoice_number'    => (string) Str::orderedUuid(),
                 'amount'            => $amount,
-                'fee'               => $fee, // fee masih static
+                'fee'               => $fee,
                 'admin_fee'         => $admin_fee,
                 'total'             => $total,
                 'payment_method'    => $payment_method->channel_code,
@@ -175,6 +180,7 @@ class InvoiceController extends BaseController
                     'item_id'       => $id,
                     'price_pieces'  => $item->price,
                     'qty'           => $qty,
+                    'fee'           => $item->fee,
                     'total'         => $item->price * $qty
                 ]);
 
@@ -184,10 +190,13 @@ class InvoiceController extends BaseController
 
             $snap_token = $this->createInvoice($invoice);
 
-            $data = [
-                'invoice'       => $invoice,
-                'snap_token'    => $snap_token
-            ];
+            $invoice->update(['snap_token' => $snap_token]);
+
+            $data = $invoice->toArray();
+
+            $data['amount'] += $data['fee'];
+
+            unset($data['fee']);
             
             DB::commit();
         } catch (\Exception $e) {
@@ -195,27 +204,51 @@ class InvoiceController extends BaseController
             return $this->sendErrorException($e->getMessage());
         }
 
-        return $this->sendResponse('berhasil menambahkan data', $data);
+        return $this->sendResponse('berhasil membuat invoice baru', $data);
     }
 
     public function check_invoice(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email'             => 'required|email|exists:buyers,email',
-            'invoice_number'    => 'required|string|exists:invoice,invoice_number'
+            'invoice_number'    => 'required|string|exists:invoices,invoice_number'
         ]);
 
         if ($validator->fails()) {
             return $this->sendError($validator->errors()->first());
         }
 
-        $data = Invoice::whereHas('buyer', fn ($q) => $q->where('email', $request->email))->where('invoice_number', $request->invoice_number)->first();
+        $invoice = Invoice::whereHas('buyer', fn ($q) => $q->where('email', $request->email))->where('invoice_number', (string) $request->invoice_number)->first();
 
-        if (!$data) {
+        if (!$invoice) {
             return $this->sendError('invoice tidak ditemukan');
         }
 
-        return $this->sendResponse('berhasil menampilkan spesifik data', $data->load(['buyer:id,name,email,phone', 'orders:id,item_id,price_pieces,qty,total', 'orders.item:id,name,description', 'verification_tickets:id,qr_code_path']));
+        $data = $invoice->toArray();
+
+        $data['buyer_details'] = [
+            'name'          => $invoice->buyer->name,
+            'phone'         => $invoice->buyer->phone,
+            'email'         => $invoice->buyer->email
+        ];
+
+        $data['order_details'] = $invoice->orders->map(fn ($order) => [
+            'id'            => $order->id,
+            'price_pieces'  => $order->price_pieces + $order->fee,
+            'qty'           => $order->qty,
+            'total'         => ($order->price_pieces + $order->fee) * $order->qty,
+            'item_id'       => $order->item->id,
+            'item_name'     => $order->item->name,
+            'item_desc'     => $order->item->description
+        ]);
+
+        $data['qr_code_path'] = $invoice->verificationTicket->qr_code_path ?? null;
+
+        $data['amount'] += $data['fee'];
+
+        unset($data['fee']);
+
+        return $this->sendResponse('berhasil menampilkan spesifik data', $data);
     }
 
     private function createInvoice(Invoice $invoice) {
@@ -254,47 +287,129 @@ class InvoiceController extends BaseController
 
     public function callBackInvoice (Request $request) {
         // check signature nya sudah sama atau belum
+        $order_id       = $request->order_id;
+        $status         = $request->status_code;
+        $gross_amount   = $request->gross_amount;
+        $server_key     = config('services.midtrans.server_key');
 
-        $invoice = Invoice::where('invoice_number', $request->order_id)->first();
+        $invoice        = Invoice::where('invoice_number', $order_id)->first();
+        $payment_method = PaymentMethod::where('channel_code', $invoice->payment_method)->first();
+
+        $signature      = openssl_digest($order_id . $status . $gross_amount . $server_key, 'sha512');
+
+        if ($signature != $request->signature_key) {
+            return $this->sendError('signature does not match');
+        }
 
         if ($invoice) {
-            switch($request->status_code) {
-                case 200:
-                    $invoice->status = 'PAID';
-                    
-                    // membuat verification tickets
-                    $token          = Str::random(16);
-                    $path           = route('scan-qr') . '?token=' . $token . '&invoice_number=' . $invoice->invoice_number;
+            DB::beginTransaction();
+            try {
+                switch($request->status_code) {
+                    case 200:
+                        $invoice->update(['status' => 'PAID', 'paid_at' => now()]);
+                        
+                        // membuat verification tickets
+                        $token          = Str::random(16);
+                        // $path           = route('scan-qr') . '?token=' . $token . '&invoice_number=' . $invoice->invoice_number;
+                        $path           = 'http://127.0.0.1:8000/admin-api/v1/verif-ticket' . '?token=' . $token . '&invoice_number=' . $invoice->invoice_number;
 
-                    $qr_code_path   = QrCode::size(500)
-                                        ->format('png')
-                                        ->generate($path, public_path('qr-code/' . $invoice->invoice_number . '.png'));
+                        QrCode::size(500)->generate($path, public_path('qr-code/' . $invoice->invoice_number . '.svg'));
+                        
+                        $invoice->verificationTicket()->save(new VerificationTicket([
+                            'token'         => Crypt::encryptString($token),
+                            'qr_code_path'  => 'qr-code/' . $invoice->invoice_number . '.svg'
+                        ]));
 
-                    $invoice->verificationTicket()->save(new VerificationTicket([
-                        'token'         => Crypt::encryptString($token),
-                        'qr_code_path'  => $qr_code_path
-                    ]));
+                        // mengirim email ke buyer bahwa pembayarannya telah berhasil dan mengirim qr code
+                        SendEmailJob::dispatch($invoice->buyer->email, new BuyerPaidPaymentMail([
+                            'invoice_number'        => $invoice->invoice_number,
+                            'buyer_details'         => [
+                                'name'      => $invoice->buyer->name,
+                                'email'     => $invoice->buyer->email,
+                                'phone'     => $invoice->buyer->phone
+                            ],
+                            'order_details'         => $invoice->orders->map(fn ($order) => [
+                                'item_name' => $order->item->name,
+                                'qty'       => $order->qty,
+                                'price'     => $order->price_pieces + $order->fee,
+                                'total'     => $order->total + ($order->fee * $order->qty)
+                            ]),
+                            'payment_method_name'   => $payment_method->name,
+                            'amount'                => $invoice->amount + $invoice->fee,
+                            'admin_fee'             => $invoice->admin_fee,
+                            'total'                 => $invoice->total,
+                            'payment_at'            => now(),
+                            'created_at'            => $invoice->created_at,
+                            'qr_code_path'          => $invoice->verificationTicket->qr_code_path
+                        ]))->delay(now()->addSeconds(15));
 
-                    // mengirim email ke buyer bahwa pembayarannya telah berhasil dan mengirim qr code
-    
-                    break;
+                        break;
 
-                case 201:
-                    $invoice->status = 'PENDING';
-                    break;
+                    case 201:
+                        $invoice->update(['status' => 'PENDING']);
 
-                default:
-                    $invoice->status = 'UNPAID';
+                        // mengirim email ke buyer ada pembayaran yang harus dibayarkan
+                        SendEmailJob::dispatch($invoice->buyer->email, new BuyerPendingPaymentMail([
+                            'invoice_number'        => $invoice->invoice_number,
+                            'buyer_details'         => [
+                                'name'      => $invoice->buyer->name,
+                                'email'     => $invoice->buyer->email,
+                                'phone'     => $invoice->buyer->phone
+                            ],
+                            'order_details'         => $invoice->orders->map(fn ($order) => [
+                                'item_name' => $order->item->name,
+                                'qty'       => $order->qty,
+                                'price'     => $order->price_pieces + $order->fee,
+                                'total'     => $order->total + ($order->fee * $order->qty)
+                            ]),
+                            'payment_method_name'   => $payment_method->name,
+                            'amount'                => $invoice->amount + $invoice->fee,
+                            'admin_fee'             => $invoice->admin_fee,
+                            'total'                 => $invoice->total,
+                            'payment_at'            => now(),
+                            'created_at'            => $invoice->created_at
+                        ]))->delay(now()->addSeconds(15));
 
-                    // mengembalikan stock item
-                    $invoice->orders->each(fn ($order) => $order->item->increment('stock', $order->qty));
+                        break;
 
-                    // mengirim email ke buyer bahwa ada pesanan yang tidak terbayar
+                    default:
+                        $invoice->update(['status' => 'UNPAID']);
 
-                    break;
+
+                        // mengembalikan stock item
+                        $invoice->orders->each(fn ($order) => $order->item->increment('stock', $order->qty));
+
+                        // mengirim email ke buyer bahwa ada pesanan yang tidak terbayar
+                        // SendEmailJob::dispatch($invoice->buyer->email, new BuyerUnPaidPaymentMail([
+                        //     'invoice_number'        => $invoice->invoice_number,
+                        //     'buyer_details'         => [
+                        //         'name'      => $invoice->buyer->name,
+                        //         'email'     => $invoice->buyer->email,
+                        //         'phone'     => $invoice->buyer->phone
+                        //     ],
+                        //     'order_details'         => $invoice->orders->map(fn ($order) => [
+                        //         'item_name' => $order->item->name,
+                        //         'qty'       => $order->qty,
+                        //         'price'     => $order->price_pieces + $order->fee,
+                        //         'total'     => $order->total + ($order->fee * $order->qty)
+                        //     ]),
+                        //     'payment_method_name'   => $payment_method->name,
+                        //     'amount'                => $invoice->amount + $invoice->fee,
+                        //     'admin_fee'             => $invoice->admin_fee,
+                        //     'total'                 => $invoice->total,
+                        //     'payment_at'            => now(),
+                        //     'created_at'            => $invoice->created_at
+                        // ]))->delay(now()->addSeconds(15));
+
+                        break;
+                }
+                
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollBack();
+                error_log(json_encode($e->getMessage()));
+                return $this->sendErrorException($e->getMessage());
             }
-    
-            $invoice->save();
 
             return $this->sendResponse('success notifications transcript');
         } else {

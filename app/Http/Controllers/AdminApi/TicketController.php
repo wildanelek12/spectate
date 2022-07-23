@@ -23,8 +23,8 @@ class TicketController extends BaseController
 
         $data = Ticket::select('id', 'name', 'expired_at')
                     ->when($keyword, fn ($q) => $q->where('name', 'like', '%' . $keyword . '%'))
-                    ->when($expired == true, fn ($q) => $q->where('expired_at', '<', now()))
-                    ->when($expired == false, fn ($q) => $q->where('expired_at', '>', now()))
+                    ->when(isset($expired) && $expired == true, fn ($q) => $q->where('expired_at', '<', now()))
+                    ->when(isset($expired) && $expired == false, fn ($q) => $q->where('expired_at', '>', now()))
                     ->simplePaginate();
 
         return $this->sendResponse('berhasil menampilkan seluruh data', $data);

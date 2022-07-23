@@ -22,7 +22,7 @@ class CreateInvoicesTable extends Migration
             $table->double('admin_fee', 11, 2);
             $table->double('total', 11, 2);
             $table->string('payment_method')->nullable();
-            $table->string('account_number')->nullable();
+            $table->string('snap_token')->nullable();
             $table->enum('status', ['UNPAID', 'PENDING', 'PAID', 'DONE']);
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();
