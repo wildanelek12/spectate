@@ -14,5 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/payment',[WebController::class,'createPayment']);
-Route::get('/',[WebController::class,'index']);     
+Route::get('/payment',[WebController::class,'createPayment']);  
+Route::get('/admin/event', function () {
+    return view('admin_page.pages.ticket');
+})->name('ticket');    
+
+Route::get('/admin/tipe-tiket', function () {
+    return view('admin_page.pages.ticket_types');
+})->name('ticket_type');    
+Route::get('/admin/tiket', function () {
+    return view('admin_page.pages.item');
+})->name('item');    
+Route::get('/admin/buyer', function () {
+    return view('admin_page.pages.buyer');
+})->name('buyer');    
+Route::get('/admin/transaksi', function () {
+    return view('admin_page.pages.invoice');
+})->name('invoice'); 
+Route::get('/admin/payment-method', function () {
+    return view('admin_page.pages.payment_method');
+})->name('payment_method'); 
+Route::get('/admin', function () {
+    return view('admin_page.pages.dashboard');
+})->name('dashboard'); 

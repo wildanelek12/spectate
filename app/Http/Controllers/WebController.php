@@ -8,7 +8,7 @@ class WebController extends Controller
 {
     public function index()
     {
-       return view('index');
+       return view('admin_page/masters/index');
     }
     public function createPayment(Request $request)
     {
