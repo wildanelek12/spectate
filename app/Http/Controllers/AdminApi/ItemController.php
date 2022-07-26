@@ -130,7 +130,7 @@ class ItemController extends BaseController
         $validator = Validator::make($request->all(), [
             'name'          => 'required|string|min:3',
             'price'         => ['required', 'numeric', 'min:1', fn ($_, $value, $fail) => ($value % 100) != 0 ? $fail('The price must be at modulus of 100') : true],
-            'fee'           => ['required', 'numeric', 'min:1', fn ($_, $value, $fail) => ($value % 100) != 0 ? $fail('The fee must be at modulus of 100') : true],
+            
             'stock'         => 'required|numeric|min:0',
             'description'   => 'required|string|min:3',
             'status'        => 'required|boolean'

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TicketType extends Model
 {
     use HasFactory, SoftDeletes;
-
+    protected $guarded = [];
     public function ticket()
     {
         return $this->belongsTo(Ticket::class);
