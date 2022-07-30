@@ -104,7 +104,7 @@ class ItemController extends BaseController
             return $this->sendErrorException($e->getMessage());
         }
 
-        return $this->sendResponse('berhasil membuat data baru', $data);
+        return $this->sendResponse('berhasil membuat data baru', $data->load(['ticketType:id,ticket_id,type_id', 'ticketType.ticket:id,name,expired_at', 'ticketType.type:id,name']));
     }
 
     /**
@@ -150,7 +150,7 @@ class ItemController extends BaseController
             return $this->sendErrorException($e->getMessage());
         }
 
-        return $this->sendResponse('berhasil mengubah data', $item);
+        return $this->sendResponse('berhasil mengubah data', $item->load(['ticketType:id,ticket_id,type_id', 'ticketType.ticket:id,name,expired_at', 'ticketType.type:id,name']));
     }
 
     public function quick_update(Request $request, Item $item)
@@ -182,7 +182,7 @@ class ItemController extends BaseController
             return $this->sendErrorException($e->getMessage());
         }
 
-        return $this->sendResponse('berhasil mengubah data', $item);
+        return $this->sendResponse('berhasil mengubah data', $item->load(['ticketType:id,ticket_id,type_id', 'ticketType.ticket:id,name,expired_at', 'ticketType.type:id,name']));
     }
 
     /**
