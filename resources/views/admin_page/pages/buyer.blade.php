@@ -11,7 +11,7 @@
                     <h6 class="card-subtitle text-muted">Lihat data pembeli disini</h6>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="table-data">
                         <thead>
                             <tr>
                                 <th>Nama</th>
@@ -46,6 +46,9 @@
 
                 var name = "<td>" + value.name + "</td>"
 
+                var phone = "<td>" + value.phone + "</td>"
+                
+                var email = "<td>" + value.email + "</td>"
                 var editAct =
                     "<a href='#' class='me-3'><i class='align-middle' data-feather='edit-2' data-data-id='" +
                     value.id +
@@ -55,7 +58,7 @@
                     value.id + "' id='btn-delete-modal' data-bs-target='#deleteModal'></i></a>"
                 var actions = "<td class='table-action'>" + editAct + deleteAct + "</td> "
 
-                html += '<tr data-data-id=' + value.id + '>' + name + actions + '</tr>'
+                html += '<tr data-data-id=' + value.id + '>' + name+phone+email  + '</tr>'
 
 
             })

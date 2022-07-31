@@ -172,19 +172,20 @@
                         <div class="row">
                             <div class="mb-1 col-md-4">
                                 <label class="form-label" for="price">Harga Tiket</label>
-                                <input type="text" class="form-control" id="input-price-update" placeholder="Harga Tiket"
-                                    name="price">
+                                <input type="text" class="form-control" id="input-price-update"
+                                    placeholder="Harga Tiket" name="price">
                             </div>
                             <div class="mb-1 col-md-4">
                                 <label class="form-label" for="stock">Stok Tiket</label>
-                                <input type="text" class="form-control" id="input-stock-update" placeholder="Stok Tiket"
-                                    name="stock">
+                                <input type="text" class="form-control" id="input-stock-update"
+                                    placeholder="Stok Tiket" name="stock">
                             </div>
 
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="description">Deskripsi</label>
-                            <textarea class="form-control" rows="4"  id="input-description-update" placeholder="Deskripsi" name="description"></textarea>
+                            <textarea class="form-control" rows="4" id="input-description-update" placeholder="Deskripsi"
+                                name="description"></textarea>
                         </div>
 
                     </div>
@@ -217,7 +218,86 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var choices_ticket = new Choices(document.querySelector("#selectTicketId"));
+            var choices_ticket = new Choices(document.querySelector("#selectTicketId"), {
+                silent: false,
+                items: [],
+                choices: [],
+                renderChoiceLimit: 0,
+                maxItemCount: 5,
+                addItems: true,
+                addItemFilter: null,
+                removeItems: true,
+                removeItemButton: false,
+                editItems: false,
+                allowHTML: true,
+                duplicateItemsAllowed: true,
+                delimiter: ',',
+                paste: true,
+                searchEnabled: true,
+                searchChoices: true,
+                searchFloor: 1,
+                searchResultLimit: 4,
+                searchFields: ['label', 'value'],
+                position: 'auto',
+                resetScrollPosition: true,
+                shouldSort: true,
+                shouldSortItems: false,
+                older: true,
+                placeholderValue: null,
+                searchPlaceholderValue: null,
+                prependValue: null,
+                appendValue: null,
+                renderSelectedChoices: 'auto',
+                loadingText: 'Loading...',
+                noResultsText: 'No results found',
+                noChoicesText: 'No choices to choose from',
+                itemSelectText: 'Press to select',
+                addItemText: (value) => {
+                    return `Press Enter to add <b>"${value}"</b>`;
+                },
+                maxItemText: (maxItemCount) => {
+                    return `Only ${maxItemCount} values can be added`;
+                },
+                valueComparer: (value1, value2) => {
+                    return value1 === value2;
+                },
+                classNames: {
+                    containerOuter: 'choices',
+                    containerInner: 'choices__inner',
+                    input: 'choices__input',
+                    inputCloned: 'choices__input--cloned',
+                    list: 'choices__list',
+                    listItems: 'choices__list--multiple',
+                    listSingle: 'choices__list--single',
+                    listDropdown: 'choices__list--dropdown',
+                    item: 'choices__item',
+                    itemSelectable: 'choices__item--selectable',
+                    itemDisabled: 'choices__item--disabled',
+                    itemChoice: 'choices__item--choice',
+                    placeholder: 'choices__placeholder',
+                    group: 'choices__group',
+                    groupHeading: 'choices__heading',
+                    button: 'choices__button',
+                    activeState: 'is-active',
+                    focusState: 'is-focused',
+                    openState: 'is-open',
+                    disabledState: 'is-disabled',
+                    highlightedState: 'is-highlighted',
+                    selectedState: 'is-selected',
+                    flippedState: 'is-flipped',
+                    loadingState: 'is-loading',
+                    noResults: 'has-no-results',
+                    noChoices: 'has-no-choices'
+                },
+                // Choices uses the great Fuse library for searching. You
+                // can find more options here: https://fusejs.io/api/options.html
+                fuseOptions: {
+                    includeScore: true
+                },
+                labelId: '',
+                callbackOnInit: null,
+                callbackOnCreateTemplates: null
+            });
             var settings = {
                 "url": "http://127.0.0.1:8000/admin-api/v1/ticket",
                 "method": "GET",
@@ -229,7 +309,7 @@
             $.ajax(settings).done(function(response) {
                 var htmlSelect;
                 var myDynamicItems = [];
-                dataTicket = response.data.data;
+                dataTicket = response.data;
                 dataTicket.forEach((value, i) => {
                     myDynamicItems[i] = {
                         value: value.id,
@@ -269,10 +349,6 @@
     </script>
     <script>
         var dataList = [];
-
-
-
-
         const setData = () => {
             let html = ''
             dataList[0].forEach((value, i) => {
@@ -313,6 +389,7 @@
         };
         $.ajax(settings).done(function(response) {
             dataList.push(response.data.data)
+            console.log(response.data.data);
             setData()
         });
 
@@ -381,9 +458,8 @@
             };
 
             $.ajax(settings).done(function(response) {
-
                 dataList[0].push(response.data)
-                console.log(formData.entries());
+                console.log(response.data);
                 setData()
                 var message = "Tambah Event Sukses";
                 var type = 'default';

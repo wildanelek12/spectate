@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <link rel="stylesheet" href="{{asset('assets/css/payment.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/payment.css') }}">
 </head>
 
 <body>
@@ -34,8 +34,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 mb-2">
-                                    <p class="textmuted h8">Nama Lengkap</p> <input class="form-control"
-                                        type="text" placeholder="Nama Lengkap ex : Wildan Romiza F">
+                                    <p class="textmuted h8">Nama Lengkap</p> <input class="form-control" type="text"
+                                        placeholder="Nama Lengkap ex : Wildan Romiza F">
                                 </div>
                                 <div class="col-6">
                                     <p class="textmuted h8">Phone</p> <input class="form-control" type="number"
@@ -50,6 +50,33 @@
                     </div>
                 </div>
             </div>
+
+            <div class="container" id="container-input">
+
+            </div>
+
+            <script>
+                let items = []
+
+                $(document).on('click', '#add-item', function() {
+                    let id = $('#item').data('item-id')
+                    let qty = $('#item-qty').val()
+
+                    items.push({
+                        id,
+                        qty
+                    })
+                })
+
+                var form = new FormData();
+
+                items.forEach((v, i) => {
+                    form.append(`items[${i}][id]`, v);
+                })
+            </script>
+
+
+
             <div class="col-md-5 col-12 ps-md-5 p-0 ">
                 <div class="box-left">
                     <p class="fw-bold h7 mb-2">Detail Invoice</p>
@@ -87,20 +114,20 @@
                             <p class="ms-auto">Rp.12000</p>
                         </div>
                         <div class="h8 mb-5">
-                            <p class="textmuted">Check Email 
+                            <p class="textmuted">Check Email
                             </p>
                         </div>
                     </div>
                     <div class="">
-   
-                            <div class="btn btn-primary d-block h8">PAY <span
-                                    class="fas fa-dollar-sign ms-2"></span>1400<span
-                                    class="ms-3 fas fa-arrow-right"></span></div>
+
+                        <div class="btn btn-primary d-block h8">PAY <span
+                                class="fas fa-dollar-sign ms-2"></span>1400<span class="ms-3 fas fa-arrow-right"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

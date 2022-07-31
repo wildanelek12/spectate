@@ -50,6 +50,7 @@
 
     <script src="{{ asset('admin_assets/js/app.js') }}"></script>
     <script src="{{ asset('admin_assets/js/datatables.js') }}"></script>
+    @stack('custom-js')
 
 </body>
 
