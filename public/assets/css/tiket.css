@@ -35,5 +35,9 @@
   }
 
   .bgcard2 {
-      background-color: rgba(207, 207, 207, 0.100);
+    background-color: rgba(207, 207, 207, 0.100);
+  }
+
+  .bgputih90 {
+    background-color: rgba(255, 255, 255, 0.9);
   }
