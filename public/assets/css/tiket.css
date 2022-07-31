@@ -1,0 +1,39 @@
+
+  .bg-ticket {
+    background-color: #000;
+    height: max-content;
+    width: 100%;
+  }
+
+  /* .btn-colour {
+    background-color: linear-gradient(to right #385071, #5B769B);
+  } */
+
+  .rounded-top {
+      border-radius: 20px 20px 0px 0px;
+  }
+
+  .rounded-left {
+      border-radius: 20px 0px 0px 0px;
+  }
+
+  .rounded-right {
+      border-radius: 0px 20px 0px 0px;
+  }
+
+  .rounded-bottom {
+      border-radius: 0px 0px 20px 20px;
+  }
+
+  .bg-ticket {
+      background-image: url(/assets/images/ticket-bg.png);
+      background-size: cover;
+  }
+
+  .bgcard1 {
+      background-color: hsla(0, 0%, 100%, 0.350);
+  }
+
+  .bgcard2 {
+      background-color: rgba(207, 207, 207, 0.100);
+  }
